@@ -1,6 +1,6 @@
 #include "Animal.hpp"
 
-Animal::Animal()
+Animal::Animal() : type("Default")
 {
     std::cout << "Base Animal Default constructor is created" << std::endl;
 };
@@ -22,4 +22,14 @@ Animal& Animal::operator=(const Animal& other)
 Animal::~Animal()
 {
     std::cout << "Base Animal instance is destroyed" << std::endl;
+};
+
+void Animal::makeSound( void ) const
+{
+    std::cout << "Base Animal: **SOME ABSTRACT ANIMAL's SOUND**" << std::endl;
+}
+
+std::string Animal::getType() const
+{
+    return type;
 };

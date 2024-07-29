@@ -10,9 +10,15 @@ class Animal
 
     public:
         Animal();
-        ~Animal();
+        virtual ~Animal(); //Making base class destructor virtual guarantees 
+                           // that the object of derived class is destructed properly,
+                           // i.e., both base class and derived class destructors are called
         Animal(const Animal& other);
         Animal& operator=(const Animal& other);
+
+        virtual void makeSound() const; //virtual because we will reimplement it
+        std::string getType() const;
+
 };
 
 #endif
