@@ -1,47 +1,25 @@
+#include "Cat.hpp"
+#include "Dog.hpp"
+#include "Brain.hpp"
+
+
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongCat.hpp"
 
-// int main()
-// {
-//     const Animal* meta = new Animal();
-//     Animal* j = new Dog();
-//     Animal* i = new Cat();
 
-//     std::cout << j->getType() << " " << std::endl;
-//     std::cout << i->getType() << " " << std::endl;
-//     i->makeSound(); //will output the cat sound!
-//     j->makeSound();
-//     meta->makeSound();
-
-//     std::cout << "\n========Same but with Wrong Cat included==========\n" << std::endl;
-
-//     const WrongAnimal* meta2 = new WrongAnimal();
-//     Animal* j2 = new Dog();
-//     WrongAnimal* i2 = new WrongCat();
-
-//     std::cout << j2->getType() << " " << std::endl;
-//     std::cout << i2->getType() << " " << std::endl;
-//     i2->makeSound(); //will output the cat sound!
-//     j2->makeSound();
-//     meta2->makeSound();
-
-//     return 0;
-// }
-
-#include "Brain.hpp"
 int main()
 {
+    Animal* animals[4];
 
-	Cat c;
-	Cat c2;
+    for (int i = 0; i < 2; i++)
+        animals[i] = new Dog();
 
-	c = c2;
+    for (int j = 2; j < 4; j++)
+        animals[j] = new Cat();
 
-	Cat c3(c2);
+    for (int k = 0; k < 4; k++)
+        delete animals[k]; 
 
-	
-
-	return 0;
-};
+    return 0;
+}
