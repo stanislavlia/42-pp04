@@ -23,9 +23,17 @@ int main()
 
     std::cout << j2->getType() << " " << std::endl;
     std::cout << i2->getType() << " " << std::endl;
-    i2->makeSound(); //will output the cat sound!
+    i2->makeSound(); //will output the wrong animal instead of wrong Cat
     j2->makeSound();
     meta2->makeSound();
+
+    std::cout << "\n========CLEANING==========\n" << std::endl;
+    delete meta;
+    delete i;
+    delete j;
+    delete i2;
+    delete j2;
+    delete meta2;
 
     return 0;
 }
