@@ -1,0 +1,214 @@
+#include "Animal.hpp"
+
+Animal::Animal() : type("Default")
+{
+    std::cout << "Base Animal Default constructor is created" << std::endl;
+};
+
+
+Animal::Animal(const Animal& other) : type(other.type)
+{
+    std::cout << "Base Animal copy constructor is called" << std::endl;
+};
+
+Animal& Animal::operator=(const Animal& other)
+{
+    std::cout << "Base Animal copy assignment is called" << std::endl;
+    type = other.type;
+    
+    return *this;
+};
+
+Animal::~Animal()
+{
+    std::cout << "Base Animal instance is destroyed" << std::endl;
+};
+
+void Animal::makeSound( void ) const
+{
+    std::cout << "Base Animal: **SOME ABSTRACT ANIMAL's SOUND**" << std::endl;
+}
+
+std::string Animal::getType() const
+{
+    return type;
+};#include "Brain.hpp"
+
+Brain::Brain()
+{
+	std::cout << "Brain is created" << std::endl;
+	for (int i = 0; i < 100; i++)
+		_ideas[i] = "";
+};
+
+Brain::Brain(const Brain& other) : _ideas(other._ideas)
+{	
+	std::cout << "Brain copy constructor called" << std::endl;
+	
+};
+
+Brain& Brain::operator=(const Brain& other)
+{
+	std::cout << "Brain copy assignment called" << std::endl;
+
+	if (this != &other)
+	{
+		for (int i = 0; i < 100; i++)
+		{
+			_ideas[i] = other._ideas[i];
+		};
+	}
+	return *this;
+};
+
+Brain::~Brain()
+{
+	std::cout << "Brain is destroyed" << std::endl;
+};#include "Cat.hpp"
+
+Cat::Cat() : Animal()
+{
+    std::cout << "Cat is created via Default constructor" <<  std::endl;
+    type = "Cat";
+    _brain = new Brain();
+};
+
+Cat::Cat(const Cat& other) : Animal(other)
+{
+    std::cout << "Cat copy constructor called" <<  std::endl;
+    if (this != &other)
+    {
+        delete _brain;
+        _brain = new Brain(*other._brain);
+    }
+};
+
+Cat& Cat::operator=(const Cat& other)
+{   
+    std::cout << "Cat copy assignment called" <<  std::endl;
+    _brain = other._brain;
+    return *this;
+};
+
+Cat::~Cat()
+{
+    std::cout << "Cat is destroyed" <<  std::endl;
+    delete _brain;
+};
+
+
+
+void Cat::makeSound() const
+{
+    std::cout << "Cat: **MEOW MEOW MEOW**" << std::endl;
+};#include "Dog.hpp"
+
+Dog::Dog()
+{
+    std::cout << "Dog is created via Default constructor" <<  std::endl;
+    type = "Dog";
+};
+
+Dog::~Dog()
+{
+    std::cout << "Dog is destroyed" << std::endl;
+};
+
+void    Dog::makeSound() const
+{
+    std::cout << "Dog: **BARKING LOUDLY...**" << std::endl;
+};#include "Animal.hpp"
+#include "Dog.hpp"
+#include "Cat.hpp"
+#include "WrongCat.hpp"
+
+// int main()
+// {
+//     const Animal* meta = new Animal();
+//     Animal* j = new Dog();
+//     Animal* i = new Cat();
+
+//     std::cout << j->getType() << " " << std::endl;
+//     std::cout << i->getType() << " " << std::endl;
+//     i->makeSound(); //will output the cat sound!
+//     j->makeSound();
+//     meta->makeSound();
+
+//     std::cout << "\n========Same but with Wrong Cat included==========\n" << std::endl;
+
+//     const WrongAnimal* meta2 = new WrongAnimal();
+//     Animal* j2 = new Dog();
+//     WrongAnimal* i2 = new WrongCat();
+
+//     std::cout << j2->getType() << " " << std::endl;
+//     std::cout << i2->getType() << " " << std::endl;
+//     i2->makeSound(); //will output the cat sound!
+//     j2->makeSound();
+//     meta2->makeSound();
+
+//     return 0;
+// }
+
+#include "Brain.hpp"
+int main()
+{
+
+	Cat c;
+	Cat c2;
+
+	c = c2;
+
+	Cat c3(c2);
+
+	
+
+	return 0;
+};#include "WrongAnimal.hpp"
+
+WrongAnimal::WrongAnimal() : type("WrongAnimal")
+{
+    std::cout << "WrongAnimal default constructor is called" << std::endl;
+};
+
+WrongAnimal::WrongAnimal(const WrongAnimal& other) : type(other.getType())
+{
+    std::cout << "WrongAnimal copy constructor is called" << std::endl;
+};
+
+WrongAnimal& WrongAnimal::operator=(const WrongAnimal& other)
+{
+    std::cout << "WrongAnimal copy assignment is called" << std::endl;
+    type = other.getType();
+    return *this;
+};
+
+WrongAnimal::~WrongAnimal()
+{
+    std::cout << "WrongAnimal  is destroyed" << std::endl;
+};
+
+std::string WrongAnimal::getType() const
+{
+    return type;
+};
+
+void    WrongAnimal::makeSound() const
+{
+    std::cout << "Wrong Animal: **SOME WRONG ANIMAL's SOUND**" << std::endl;
+};#include "WrongCat.hpp"
+
+WrongCat::WrongCat()
+{   
+    std::cout << "WrongCat default constructor is called" << std::endl;
+    type = "WrongCat";
+};
+
+WrongCat::~WrongCat()
+{
+    std::cout << "WrongCat  is destroyed" << std::endl;
+};
+
+void WrongCat::makeSound() const
+{
+    std::cout << "WrongCat: **WRONG MEOW MEOW**" << std::endl;
+};

@@ -33,11 +33,15 @@
 #include "Brain.hpp"
 int main()
 {
-	Brain b1;
-	Brain b2;
-	Brain b3 = b1;
 
+	Cat c;
+	Cat c2;
 
+	c = c2;
+
+	Cat c3(c2);
+
+	
 
 	return 0;
 };
